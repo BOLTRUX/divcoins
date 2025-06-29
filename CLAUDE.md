@@ -111,6 +111,51 @@ src/components/
 - **Touch-friendly**: Minimum 44px touch targets
 - **Progressive Enhancement**: Enhanced features for larger screens
 
+### 📱 Mobile Apps Strategy
+**IMPORTANT**: DivCoins is designed for multi-platform deployment without code rewrite
+
+#### PWA (Progressive Web App) - Phase 1 ⭐ RECOMMENDED
+- **Timeline**: +1 week after MVP web completion
+- **Code Reuse**: 100% - Same React codebase
+- **Features**: 
+  - ✅ Installable from browser ("Add to Home Screen")
+  - ✅ Offline functionality with cached themes
+  - ✅ Push notifications for new expenses
+  - ✅ Native mobile feel and performance
+  - ✅ Access to device features (camera for receipts)
+- **App Stores**: Can be published to both Google Play and Apple App Store
+- **Implementation**: Add Web App Manifest + enhanced Service Worker
+
+#### Capacitor (Hybrid Native) - Phase 2 🚀 IF NEEDED
+- **Timeline**: +2-3 weeks if app stores required
+- **Code Reuse**: 95% - React app wrapped in native container
+- **Result**: Real APK (Android) + IPA (iOS) files
+- **Features**:
+  - ✅ Full native performance
+  - ✅ All native device APIs
+  - ✅ Google Play Store + Apple App Store ready
+  - ✅ Automatic updates through web
+- **Commands**:
+  ```bash
+  npm install @capacitor/core @capacitor/android @capacitor/ios
+  npx cap init
+  npx cap add android ios
+  npx cap build
+  ```
+
+#### React Native - ❌ NOT RECOMMENDED
+- **Timeline**: +3-6 months (complete rewrite)
+- **Code Reuse**: 0% - Start from scratch
+- **Reason**: Unnecessary for DivCoins use case
+
+#### Mobile Development Priority
+1. **Complete web MVP** (current phase)
+2. **Convert to PWA** - Perfect for personal use + testing with girlfriend
+3. **Evaluate Capacitor** - Only if app store presence needed later
+4. **Theme system works perfectly** on mobile PWAs
+
+**For Implementation Details**: See ROADMAP_DETAILED.md Phase 2 Mobile Strategy
+
 ### Development Workflow
 
 #### Code Quality

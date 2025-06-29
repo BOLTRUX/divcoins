@@ -406,7 +406,52 @@ Escalar el sistema de temas a 100+ opciones, implementar todas las funcionalidad
 5. **Sistema de deudas y liquidaciones**
 6. **Reportes y analytics**
 7. **Performance optimization para miles de temas**
-8. **Mobile app optimization**
+8. **📱 Mobile PWA implementation**
+
+### **📱 MOBILE APPS STRATEGY (INTEGRATED)**
+
+#### **8.1 PWA Implementation (Semana 6-7)**
+**Tiempo Estimado**: 1 semana  
+**Prioridad**: 🟡 High  
+**Estado**: ❌ Todo  
+
+**Objective**: Convert web app to installable PWA without code rewrite
+
+**Subtareas**:
+- [ ] Create Web App Manifest (app name, icons, theme colors)
+- [ ] Enhance Service Worker for offline functionality
+- [ ] Implement theme caching for offline access
+- [ ] Add "Install App" prompt for mobile browsers
+- [ ] Configure push notifications for new expenses
+- [ ] Test installation on Android/iOS devices
+- [ ] Optimize touch gestures and mobile UX
+
+**Criterios de Éxito**:
+- ✅ App installable from browser on mobile devices
+- ✅ Offline functionality with cached themes
+- ✅ Native mobile feel and performance
+- ✅ Push notifications working
+- ✅ Perfect for testing with girlfriend during travel
+
+#### **8.2 Capacitor Setup (Optional - Si se necesitan stores)**
+**Tiempo Estimado**: 2-3 semanas  
+**Prioridad**: 🟢 Low  
+**Estado**: ⏸️ Paused until PWA evaluation  
+
+**Only implement if**:
+- PWA limitations found during testing
+- App Store presence required for marketing
+- Need advanced native features
+
+**Commands Ready**:
+```bash
+npm install @capacitor/core @capacitor/android @capacitor/ios
+npx cap init DivCoins com.boltrux.divcoins
+npx cap add android ios
+npx cap build
+```
+
+**Result**: Real APK + IPA files for app stores
 
 ### **Dependencias de Fase 1**:
 - ✅ Sistema de temas base funcionando
