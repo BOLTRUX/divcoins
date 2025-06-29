@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { supabase, signUp, signIn, signOut, getCurrentUser } from '@/lib/supabase'
+import type { User } from '@supabase/supabase-js'
 
 export function SupabaseTest() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
