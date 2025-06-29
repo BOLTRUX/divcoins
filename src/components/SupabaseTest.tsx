@@ -27,7 +27,7 @@ export function SupabaseTest() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    const { data, error } = await signUp(email, password)
+    const { error } = await signUp(email, password)
     if (error) {
       setMessage(`SignUp Error: ${error.message}`)
     } else {
@@ -39,7 +39,7 @@ export function SupabaseTest() {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    const { data, error } = await signIn(email, password)
+    const { error } = await signIn(email, password)
     if (error) {
       setMessage(`SignIn Error: ${error.message}`)
     } else {
@@ -133,7 +133,7 @@ export function SupabaseTest() {
       )}
 
       <div className="mt-6 text-xs text-gray-500 text-center">
-        <p>🔗 Connected to: {supabase.supabaseUrl.split('//')[1]}</p>
+        <p>🔗 Connected to: Supabase Project DIVCOINS</p>
         <p>🔐 RLS Policies: ✅ Active</p>
         <p>📊 Schema: ✅ 5 tables ready</p>
       </div>
