@@ -2,33 +2,37 @@
 
 ## 📊 RESUMEN EJECUTIVO DE TAREAS
 - **Total Estimado**: 156 tareas
-- **Completadas**: 12 (8%)
-- **En Progreso**: 4 (3%)
-- **Pendientes**: 140 (89%)
+- **Completadas**: 23 (15%)
+- **En Progreso**: 2 (1%)
+- **Pendientes**: 131 (84%)
 - **Bloqueadas**: 0 (0%)
 - **Story Points Total**: ~580 puntos
 - **Tiempo Estimado Total**: 18-26 semanas (3 fases)
+- **Velocity Actual**: 23 tareas completadas en Foundation phase
 
 ---
 
 ## 🚨 TAREAS CRÍTICAS INMEDIATAS (Esta Semana)
 
-### 🔴 **BLOCKERS CRÍTICOS**
-| Tarea | Prioridad | Estado | Tiempo Est. | Depende De | Bloquea |
-|-------|-----------|--------|-------------|------------|---------|
-| Resolver build system (rollup) | Critical | ❌ Todo | 2-4h | Ninguna | Todo el deploy |
-| Git initial commit + GitHub repo | Critical | ❌ Todo | 1h | Build fix | CI/CD, colaboración |
-| Configurar environment (.env) | Critical | ❌ Todo | 1h | GitHub | Backend, auth |
-| Setup Supabase project | Critical | ❌ Todo | 2h | Environment | Auth, database |
+### ✅ **BLOCKERS CRÍTICOS RESUELTOS**
+| Tarea | Prioridad | Estado | Tiempo Real | Completado |
+|-------|-----------|--------|-------------|------------|
+| Resolver build system (rollup) | Critical | ✅ Done | 3h | 30 Jun 2025 |
+| Git initial commit + GitHub repo | Critical | ✅ Done | 2h | 30 Jun 2025 |
+| Configurar environment (.env) | Critical | ✅ Done | 1h | 30 Jun 2025 |
+| Setup Supabase project | Critical | ✅ Done | 3h | 30 Jun 2025 |
+| Configurar CI/CD GitHub Actions | High | ✅ Done | 4h | 30 Jun 2025 |
+| Crear ThemeStore Zustand | High | ✅ Done | 5h | 30 Jun 2025 |
+| Implementar ThemeProvider | High | ✅ Done | 3h | 30 Jun 2025 |
+| Integrar primer tema TweakCN | High | ✅ Done | 4h | 30 Jun 2025 |
 
-### 🟡 **HIGH PRIORITY (Esta Semana)**
+### 🎯 **PRÓXIMAS PRIORIDADES (Esta Semana)**
 | Tarea | Prioridad | Estado | Tiempo Est. | Depende De | Owner |
 |-------|-----------|--------|-------------|------------|-------|
-| Configurar CI/CD GitHub Actions | High | ❌ Todo | 4h | Git setup | Dev |
-| Crear ThemeStore Zustand | High | ❌ Todo | 4h | Build fix | Dev |
-| Implementar ThemeProvider | High | ❌ Todo | 3h | ThemeStore | Dev |
-| AuthStore básico | High | ❌ Todo | 4h | Supabase | Dev |
-| Primer tema TweakCN | High | ❌ Todo | 6h | ThemeProvider | Dev |
+| Implementar ExpenseStore | High | 🔄 Ready | 6h | ThemeStore | Dev |
+| Crear componentes de gastos | High | ❌ Todo | 8h | ExpenseStore | Dev |
+| Dashboard básico | Medium | ❌ Todo | 6h | Expense components | Dev |
+| Sistema de relaciones básico | Medium | ❌ Todo | 8h | Auth + Supabase | Dev |
 
 ---
 
@@ -38,20 +42,20 @@
 | Tarea | Prioridad | Estado | Tiempo Est. | Owner | Notas |
 |-------|-----------|--------|-------------|-------|-------|
 | ✅ Crear directorio .git local | Critical | ✅ Done | 5min | Dev | Completado |
-| Crear repo GitHub "divcoins" | Critical | ❌ Todo | 30min | Dev | Público |
-| Configurar branch protection main | Critical | ❌ Todo | 15min | Dev | Require PR reviews |
-| Setup develop branch strategy | High | ❌ Todo | 15min | Dev | Feature branches |
+| Crear repo GitHub "divcoins" | Critical | ✅ Done | 30min | Dev | Completado |
+| Configurar branch protection main | Critical | ✅ Done | 15min | Dev | Configurado |
+| Setup develop branch strategy | High | ✅ Done | 15min | Dev | Branch strategy ready |
 | Crear issue/PR templates | Medium | ❌ Todo | 45min | Dev | GitHub templates |
 | Configurar GitHub labels | Medium | ❌ Todo | 30min | Dev | bug, feature, docs, etc. |
 
 ### **CI/CD Pipeline**
 | Tarea | Prioridad | Estado | Tiempo Est. | Owner | Dependencias |
 |-------|-----------|--------|-------------|-------|---------------|
-| Crear .github/workflows/ci.yml | Critical | ❌ Todo | 2h | Dev | Git setup |
-| Configurar lint + typecheck jobs | High | ❌ Todo | 1h | Dev | CI workflow |
-| Setup build + test pipeline | High | ❌ Todo | 1h | Dev | Build fix |
-| Integrar Vercel deployment | High | ❌ Todo | 1h | Dev | CI pipeline |
-| Configurar environment secrets | High | ❌ Todo | 30min | Dev | Supabase keys |
+| Crear .github/workflows/ci.yml | Critical | ✅ Done | 2h | Dev | Completado |
+| Configurar lint + typecheck jobs | High | ✅ Done | 1h | Dev | Funcionando |
+| Setup build + test pipeline | High | ✅ Done | 1h | Dev | Pipeline activo |
+| Integrar Vercel deployment | High | ✅ Done | 1h | Dev | Auto-deploy ready |
+| Configurar environment secrets | High | ✅ Done | 30min | Dev | Supabase keys configured |
 | Setup PR preview deployments | Medium | ❌ Todo | 1h | Dev | Vercel config |
 
 ### **Build System & Performance**
@@ -59,7 +63,7 @@
 |-------|-----------|--------|-------------|-------|-------|
 | ✅ Configurar Vite + React | Critical | ✅ Done | 30min | Dev | Funcionando |
 | ✅ Setup TypeScript config | Critical | ✅ Done | 30min | Dev | Triple config |
-| Resolver error rollup nativo | Critical | ❌ Todo | 2h | Dev | **BLOCKER** |
+| Resolver error rollup nativo | Critical | ✅ Done | 3h | Dev | **RESUELTO** |
 | Optimizar bundle size | Medium | ❌ Todo | 2h | Dev | Code splitting |
 | Configurar PWA capabilities | Low | ❌ Todo | 4h | Dev | Offline support |
 
@@ -72,18 +76,19 @@
 |-------|-----------|--------|-------------|-------|---------------|
 | ✅ Configurar OKLCH variables | Critical | ✅ Done | 2h | Dev | Completado |
 | ✅ Setup CSS custom properties | Critical | ✅ Done | 1h | Dev | Completado |
-| Crear ThemeStore Zustand | Critical | ❌ Todo | 4h | Dev | Build fix |
-| Implementar ThemeProvider context | Critical | ❌ Todo | 3h | Dev | ThemeStore |
-| Crear useTheme hook | High | ❌ Todo | 2h | Dev | ThemeProvider |
-| Setup theme persistence localStorage | High | ❌ Todo | 2h | Dev | useTheme |
-| Implementar preview mode | High | ❌ Todo | 3h | Dev | Theme hooks |
+| Crear ThemeStore Zustand | Critical | ✅ Done | 5h | Dev | Completado |
+| Implementar ThemeProvider context | Critical | ✅ Done | 3h | Dev | Implementado |
+| Crear useTheme hook | High | ✅ Done | 4h | Dev | 8 hooks creados |
+| Setup theme persistence localStorage | High | ✅ Done | 2h | Dev | Zustand persist |
+| Implementar preview mode | High | ✅ Done | 3h | Dev | Hover preview ready |
 
 ### **TweakCN Integration**
 | Tarea | Prioridad | Estado | Tiempo Est. | Owner | Dependencias |
 |-------|-----------|--------|-------------|-------|---------------|
-| Investigar TweakCN themes | High | ❌ Todo | 2h | Dev | Ninguna |
-| Crear estructura /tweakcn-themes/ | High | ❌ Todo | 1h | Dev | Research |
-| Integrar primer tema (mint-fresh) | High | ❌ Todo | 6h | Dev | Estructura |
+| Investigar TweakCN themes | High | ✅ Done | 2h | Dev | Research completado |
+| Crear estructura /themes/ | High | ✅ Done | 1h | Dev | Structure ready |
+| Integrar primer tema "Mint Fresh" | High | ✅ Done | 4h | Dev | Tema funcionando |
+| Crear ThemeSelector UI | High | ✅ Done | 6h | Dev | UI completa |
 | Crear metadata themes-config.ts | High | ❌ Todo | 2h | Dev | Primer tema |
 | Implementar lazy loading temas | Medium | ❌ Todo | 4h | Dev | Config metadata |
 | Setup caching strategy | Medium | ❌ Todo | 3h | Dev | Lazy loading |

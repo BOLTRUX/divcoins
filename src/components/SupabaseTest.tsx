@@ -61,8 +61,8 @@ export function SupabaseTest() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">🧪 Supabase Test</h2>
+    <div className="max-w-md mx-auto mt-8 p-6 bg-card rounded-lg shadow-md border border-border">
+      <h2 className="text-2xl font-bold mb-4 text-center text-card-foreground">🧪 Supabase Test</h2>
       
       {message && (
         <div className="mb-4 p-3 bg-blue-100 border border-blue-400 text-blue-700 rounded">
