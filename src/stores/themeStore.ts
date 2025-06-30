@@ -349,7 +349,7 @@ export const useThemeStore = create<ThemeStore>()(
 function isValidCSSValue(value: string): boolean {
   if (!value || typeof value !== 'string') return false
   // Basic validation for OKLCH values and CSS units
-  return /^[\d.%\s\-\/]+$/.test(value) || /^[a-zA-Z\-\s,]+$/.test(value)
+  return /^[\d.%\s\-/]+$/.test(value) || /^[a-zA-Z\-\s,]+$/.test(value)
 }
 
 // Helper function to apply theme to DOM

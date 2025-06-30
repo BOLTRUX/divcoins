@@ -11,12 +11,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **PROJECT_TRACKER.md** - Dashboard ejecutivo, progreso diario
   - **Úsalo para**: Conocer estado general, métricas, próximos milestones
   - **Actualizar**: Diariamente al final del día
-  - **Estado actual**: 15% progreso, Fase 1 Foundation
+  - **Estado actual**: 85% progreso, Fase 1 Foundation
   
 - **CURRENT_STATUS.md** - Análisis técnico profundo
   - **Úsalo para**: Entender gaps técnicos, blockers, próximos pasos críticos
   - **Actualizar**: Semanalmente o cuando hay cambios técnicos
-  - **Last update**: Identifica 4 blockers críticos inmediatos
+  - **Last update**: Foundation 85% complete, sistema de temas implementado
 
 - **ROADMAP_DETAILED.md** - Plan completo de desarrollo  
   - **Úsalo para**: Entender tareas específicas, dependencias, estimaciones
@@ -26,7 +26,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **TASKS_BREAKDOWN.md** - Tracking granular de 156 tareas
   - **Úsalo para**: Marcar progress diario, gestionar sprints
   - **Actualizar**: Diariamente al completar tareas
-  - **Current**: 580 story points, 12 completadas (8%)
+  - **Current**: 580 story points, 23 completadas (15%)
+
+- **REGLAS.md** - 🚨 **CRÍTICO: Reglas de desarrollo y auditoría pre-commit**
+  - **Úsalo para**: SIEMPRE antes de hacer commit, evitar errores en CI/CD
+  - **Actualizar**: Al agregar nuevas reglas de calidad
+  - **OBLIGATORIO**: Ejecutar lint + type-check + build antes de cada commit
 
 ### 🏗️ Architecture & Specifications  
 - **CONTEXT.md** - Biblia técnica del proyecto (606 líneas)
@@ -204,6 +209,11 @@ src/components/
 
 ## 🔄 WORKFLOW DE DESARROLLO DIARIO
 
+### 🚨 **BEFORE EVERYTHING: READ REGLAS.md**
+- **SIEMPRE** revisar REGLAS.md antes de hacer cualquier commit
+- **OBLIGATORIO** ejecutar auditoría pre-commit (lint + type-check + build)
+- **NUNCA** saltarse las verificaciones
+
 ### 🌅 Morning Routine (5 min)
 1. **Leer PROJECT_TRACKER.md** 
    - Revisar progreso de ayer
@@ -220,17 +230,26 @@ src/components/
    - Verificar dependencias de tareas
    - Estimar tiempo realista
 
-### 🌆 Evening Routine (10 min)
-1. **Actualizar TASKS_BREAKDOWN.md**
+### 🌆 Evening Routine (15 min)
+1. **🚨 AUDITORÍA PRE-COMMIT (OBLIGATORIO)**
+   - Ejecutar: `npm run lint && npm run type-check && npm run build`
+   - Si falla alguno: ARREGLAR ANTES DE COMMIT
+
+2. **Actualizar TASKS_BREAKDOWN.md**
    - Marcar tareas completadas: ✅
    - Mover tareas bloqueadas: 🚫
    - Añadir nuevas tareas descubiertas
 
-2. **Actualizar PROJECT_TRACKER.md**
+3. **Actualizar PROJECT_TRACKER.md**
    - Recalcular progreso de fase
    - Actualizar métricas clave  
    - Documentar wins del día
    - Actualizar timestamp
+
+4. **COMMIT SEGURO**
+   - Solo después de pasar auditoría pre-commit
+   - Verificar GitHub Actions ✅
+   - Verificar Vercel Deploy ✅
 
 ### 📅 Weekly Review (30 min - Viernes)
 1. **Actualizar CURRENT_STATUS.md**
