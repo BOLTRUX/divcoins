@@ -1,0 +1,303 @@
+# DivCoins v2.0 - Product Requirements Document
+
+## Overview
+DivCoins is a social fintech application that revolutionizes shared expense management by combining intelligent financial tracking with the most advanced visual personalization system in the fintech market. The application enables couples, roommates, friends, and families to manage shared expenses while providing unprecedented customization through 1000+ theme options via TweakCN integration.
+
+**Market Position**: "Instagram for shared finances with unlimited personalization"
+**Core Differentiator**: First fintech app with massive visual personalization (1000+ themes)
+**Current Status**: Foundation 85% complete - Core infrastructure implemented with advanced theme system
+
+## Core Features
+
+### 1. Advanced Theme System (Implemented - 100%)
+**STATUS: ✅ COMPLETE**
+- OKLCH color system with 50+ CSS variables for dynamic theming
+- Zustand store with persistence and caching for theme management
+- Real-time theme preview with hover effects
+- TweakCN integration with "Mint Fresh" theme successfully implemented
+- 8 custom React hooks for comprehensive theme management
+- ThemeProvider, ThemeSelector, and ThemeToggle components functional
+- Performance-optimized for instant theme switching (<100ms)
+
+### 2. User Authentication & Management
+**STATUS: 🔄 FOUNDATION READY - NEEDS IMPLEMENTATION**
+- Supabase authentication integration (configured but needs implementation)
+- JWT-based session management
+- User profiles with theme preferences
+- Password reset and email verification
+- Social login options (Google, Apple)
+- Multi-device session synchronization
+- Personal theme preference storage per user
+
+### 3. Expense Tracking & Management
+**STATUS: ❌ NOT IMPLEMENTED - HIGH PRIORITY**
+- Individual expense recording with receipt capture
+- Shared expense creation and automatic splitting
+- Custom splitting options (equal, percentage, custom amounts)
+- Expense categories with custom icons
+- Multi-currency support with real-time conversion
+- Recurring expense automation
+- Expense search and filtering
+- Integration with bank accounts (future phase)
+
+### 4. Relationship Management System
+**STATUS: ❌ NOT IMPLEMENTED - HIGH PRIORITY**
+- Group creation (couples, roommates, friends, family)
+- Invitation system with email/phone
+- Role-based permissions (admin, member, viewer)
+- Group theme preferences and sharing
+- Member management and removal
+- Group settings and privacy controls
+- Multiple group membership support
+
+### 5. Dashboard & Analytics
+**STATUS: ❌ NOT IMPLEMENTED - MEDIUM PRIORITY**
+- Real-time expense summaries with themeable charts
+- Debt calculation and settlement tracking
+- Budget creation and monitoring with alerts
+- Spending pattern analytics
+- Visual reports with customizable themes
+- Expense notifications and reminders
+- Monthly/yearly spending summaries
+
+### 6. Inventory Management
+**STATUS: ❌ NOT IMPLEMENTED - MEDIUM PRIORITY**
+- Shared item tracking (groceries, household items)
+- Purchase history and patterns
+- Low stock alerts and notifications
+- Item categorization and search
+- Shopping list generation
+- Barcode scanning for quick entry
+- Price tracking and history
+
+### 7. Debt Calculation & Settlement
+**STATUS: ❌ NOT IMPLEMENTED - MEDIUM PRIORITY**
+- Automatic debt calculation between users
+- Settlement suggestions and optimization
+- Payment tracking and confirmation
+- Payment reminders and notifications
+- Settlement history and records
+- Multiple settlement options (cash, transfer, etc.)
+
+## User Experience
+
+### User Personas
+1. **Primary**: Young couples (25-35) sharing living expenses
+2. **Secondary**: Roommates (22-30) splitting utilities and groceries
+3. **Tertiary**: Friend groups organizing trips and shared activities
+4. **Future**: Families tracking household expenses
+
+### Key User Flows
+1. **Onboarding**: Sign up → Choose theme → Create/join group → Add first expense
+2. **Daily Usage**: Open app → View dashboard → Add expense → Split with group
+3. **Customization**: Access theme selector → Preview themes → Apply favorite
+4. **Settlement**: View debts → Calculate settlement → Process payment
+
+### UI/UX Considerations
+- Mobile-first responsive design with touch-friendly 44px+ buttons
+- Dark/light mode automatic detection with custom theme overlay
+- Consistent visual experience across all themes
+- Maximum 3 clicks for core functions
+- Elegant animations using Framer Motion
+- Loading states for all async operations
+- Error handling with user-friendly messages
+
+## Technical Architecture
+
+### Frontend Stack (Implemented)
+- React 19 + TypeScript + Vite build system
+- TailwindCSS v4 with advanced OKLCH color system
+- Zustand for state management with persistence
+- Shadcn/ui component library (configured)
+- Framer Motion for animations
+- React Hook Form + Zod for form validation
+- React Query for server state management
+- Lucide React for iconography
+
+### Backend & Services (Configured)
+- Supabase for authentication, database, and storage
+- PostgreSQL with Row Level Security (RLS)
+- Real-time subscriptions for collaborative features
+- File storage for receipts and avatars
+- Email service for notifications
+
+### Database Schema (Designed)
+**Users Table**:
+- id, email, name, avatar_url, theme_preferences, created_at, updated_at, settings
+
+**Relationships Table**:
+- id, name, type, created_by, theme_id, settings, created_at, updated_at
+
+**Relationship_Members Table**:
+- id, relationship_id, user_id, role, personal_theme_override, joined_at
+
+**Expenses Table**:
+- id, amount, description, category, created_by, relationship_id, split_type, currency, receipt_url, created_at
+
+**Expense_Splits Table**:
+- id, expense_id, user_id, amount, percentage, status, paid_at
+
+**Settlements Table**:
+- id, from_user, to_user, amount, description, status, created_at, settled_at
+
+### Infrastructure (Configured)
+- GitHub repository with CI/CD pipeline
+- Vercel deployment with automatic previews
+- GitHub Actions for testing and deployment
+- ESLint and TypeScript for code quality
+
+## Development Roadmap
+
+### Phase 1: Foundation (CURRENT - 85% Complete)
+**Timeline**: 1-2 weeks remaining
+**Goal**: Complete core infrastructure and basic functionality
+
+**Remaining Tasks**:
+1. **Expense Management Core** (Week 1)
+   - Implement ExpenseStore with Zustand
+   - Create expense form components with validation
+   - Build expense list with filtering and search
+   - Add expense splitting logic and UI
+   - Implement receipt upload functionality
+
+2. **User Relationships** (Week 1-2)
+   - Build relationship creation and management
+   - Implement invitation system
+   - Create member management interface
+   - Add role-based permissions
+   - Implement group theme sharing
+
+3. **Dashboard Implementation** (Week 2)
+   - Create responsive dashboard layout
+   - Build expense summary widgets
+   - Implement debt calculation display
+   - Add recent activity feed
+   - Create navigation and layout components
+
+4. **Testing & Quality** (Week 2)
+   - Set up Jest and React Testing Library
+   - Write unit tests for stores and utilities
+   - Create integration tests for key flows
+   - Implement error boundaries and handling
+   - Add loading states throughout application
+
+### Phase 2: Enhanced Features (4-6 weeks)
+**Goal**: Advanced functionality and optimization
+
+**Features**:
+- Advanced analytics and reporting
+- Budget management system
+- Inventory tracking functionality
+- Mobile PWA capabilities
+- Performance optimizations
+- Additional TweakCN themes integration (100+ themes)
+
+### Phase 3: Scaling & Differentiation (6-8 weeks)
+**Goal**: Market-leading features and scalability
+
+**Features**:
+- Custom theme editor
+- AI-powered expense categorization
+- Bank account integration
+- Community theme marketplace
+- Advanced settlement options
+- Multi-language support
+
+## Logical Dependency Chain
+
+### Foundation Dependencies (Critical Path)
+1. **Authentication System** → Required for all user features
+2. **Relationship Management** → Required for shared expenses
+3. **Expense Core** → Required for main functionality
+4. **Dashboard** → Required for user engagement
+5. **Debt Calculation** → Required for settlements
+
+### Implementation Order (Technical Dependencies)
+1. **Complete Authentication Store** (blocks all user features)
+2. **Implement Relationship Management** (blocks shared expenses)
+3. **Build Expense Management** (core feature)
+4. **Create Dashboard Layout** (user interface)
+5. **Add Debt Calculations** (settlement system)
+6. **Implement Testing Framework** (quality assurance)
+
+### Performance Dependencies
+1. **Component Lazy Loading** → Required for large theme library
+2. **Image Optimization** → Required for receipt storage
+3. **Database Indexing** → Required for fast queries
+4. **Caching Strategy** → Required for responsive UI
+
+## Risks and Mitigations
+
+### Technical Challenges
+**Risk**: Theme system performance with 1000+ themes
+**Mitigation**: Implement lazy loading, theme caching, and progressive enhancement
+
+**Risk**: Real-time synchronization complexity
+**Mitigation**: Use Supabase real-time subscriptions with conflict resolution
+
+**Risk**: Mobile performance on older devices
+**Mitigation**: Progressive Web App (PWA) optimization and code splitting
+
+### Business Risks
+**Risk**: User adoption of complex personalization
+**Mitigation**: Simple onboarding with gradual feature introduction
+
+**Risk**: Competition from established fintech apps
+**Mitigation**: Focus on unique theme differentiation and user experience
+
+### Resource Constraints
+**Risk**: Single developer timeline pressure
+**Mitigation**: Focus on MVP features first, use established libraries and frameworks
+
+**Risk**: Scope creep with theme customization
+**Mitigation**: Strict phase-based development with clear acceptance criteria
+
+## Success Metrics
+
+### Technical KPIs
+- Theme switch time: <100ms
+- First contentful paint: <2s
+- Lighthouse score: >90
+- TypeScript coverage: 100%
+- Test coverage: >80%
+
+### Product KPIs
+- User engagement increase: +40% from personalization
+- Theme usage: >50% users customize from default
+- User retention: >70% monthly active users
+- App store rating: >4.5/5 stars
+
+### Business KPIs
+- Time to market: Foundation complete in 2 weeks
+- Development velocity: 20+ story points per week
+- Quality metrics: Zero breaking changes in production
+- User satisfaction: >90% positive feedback on themes
+
+## Current Implementation Status
+
+### Completed (85% Foundation)
+- ✅ Complete technical documentation and architecture
+- ✅ React 19 + TypeScript + Vite build system configured
+- ✅ Advanced OKLCH theme system implemented
+- ✅ Zustand theme store with persistence
+- ✅ TweakCN integration with first theme
+- ✅ Supabase authentication and database configured
+- ✅ CI/CD pipeline with GitHub Actions and Vercel
+- ✅ Project structure and component organization
+
+### Immediate Priorities (Next 2 Weeks)
+- 🔄 Complete expense management system
+- 🔄 Implement user relationship management
+- 🔄 Build responsive dashboard interface
+- 🔄 Add comprehensive testing framework
+- 🔄 Implement error handling and loading states
+
+### Technical Requirements
+- All new components must support dynamic theming
+- Mobile-first responsive design mandatory
+- TypeScript strict mode compliance required
+- Comprehensive error handling implementation
+- Performance monitoring and optimization
+- Accessibility standards compliance (WCAG 2.1)
+
+This PRD represents the current state and immediate roadmap for DivCoins v2.0, focusing on completing the foundation phase while maintaining the unique theme-based differentiation strategy that sets the application apart in the fintech market.

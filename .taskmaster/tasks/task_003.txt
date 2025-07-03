@@ -1,0 +1,11 @@
+# Task ID: 3
+# Title: Implement Relationship Management Backend
+# Status: pending
+# Dependencies: 2
+# Priority: high
+# Description: Implement the backend logic for the Relationship Management System. This includes creating groups, managing group members, handling invitations (email/phone), assigning roles (admin, member, viewer), and managing group settings.
+# Details:
+Utilize Supabase database and potentially Edge Functions if complex logic is needed. Create functions/services to interact with `Relationships` and `Relationship_Members` tables. Implement logic for creating a new relationship entry, adding members (via invitation code or email), setting roles, and removing members. Ensure Row Level Security (RLS) is correctly configured on these tables.
+
+# Test Strategy:
+Write backend integration tests for group creation, member addition/removal, and role assignment functions. Manually test these actions via a temporary interface or API calls. Verify data integrity in the `Relationships` and `Relationship_Members` tables.

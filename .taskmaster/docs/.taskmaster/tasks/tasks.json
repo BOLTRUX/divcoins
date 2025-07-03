@@ -1,0 +1,161 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 11,
+        "title": "Implement Supabase Authentication Flows",
+        "description": "Implement the core user authentication flows including sign up, sign in, and sign out using Supabase. This task is foundational for all user-specific features.",
+        "details": "Utilize the Supabase JS client library. Implement functions for `auth.signUp`, `auth.signInWithPassword`, and `auth.signOut`. Handle JWT session management automatically provided by the client. Integrate with React context or Zustand store for global auth state management. Ensure proper error handling for invalid credentials or user input.",
+        "testStrategy": "Manually test sign up, sign in, and sign out flows. Verify session persistence across page reloads. Write unit tests for auth service functions and integration tests for auth components (e.g., login form).",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement User Profile Management",
+        "description": "Implement user profile management, allowing users to view and update their information, including theme preferences. Store data in the Supabase `users` table.",
+        "details": "Create components for displaying and editing user profiles. Use React Hook Form and Zod for form validation. Fetch user data using `supabase.auth.getUser()` and `supabase.from('users').select(...)`. Implement update logic using `supabase.from('users').update(...)`. Ensure theme preferences are stored and retrieved correctly.",
+        "testStrategy": "Verify user profile data is displayed correctly. Test updating name, avatar URL, and theme preferences. Ensure data persists in the database and is reflected upon reload.",
+        "priority": "medium",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Implement Relationship Creation and Management",
+        "description": "Implement the core functionality for creating and managing relationships (groups) like couples, roommates, etc. Store relationship data in the `relationships` table.",
+        "details": "Create a form component for relationship creation. Use React Hook Form and Zod for validation. Insert new relationship data into the `relationships` table, linking the creator user. Implement basic relationship settings management (e.g., name, type).",
+        "testStrategy": "Test creating new relationships with different types. Verify data is stored correctly in the `relationships` table. Test updating relationship settings.",
+        "priority": "high",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Implement Relationship Invitation System",
+        "description": "Implement the system for inviting users to relationships and handling invitation acceptance/rejection. Manage members in the `relationship_members` table.",
+        "details": "Design an invitation flow (e.g., via email or shareable link). Store pending invitations (potentially in a new table or within `relationship_members` with a status). Implement logic for accepting an invitation, adding the user to `relationship_members` with a default role. Implement logic for rejecting an invitation.",
+        "testStrategy": "Test sending invitations. Test accepting and rejecting invitations. Verify users are added to the `relationship_members` table with the correct relationship ID and role upon acceptance.",
+        "priority": "high",
+        "dependencies": [
+          13
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement Relationship Member Management and Roles",
+        "description": "Implement functionality for managing members within a relationship, including adding/removing members and assigning roles.",
+        "details": "Build an interface to view relationship members from the `relationship_members` table. Implement functions to update member roles and remove members from the relationship (deleting the entry in `relationship_members`). Ensure only users with appropriate roles (e.g., admin) can perform these actions using Supabase RLS.",
+        "testStrategy": "Test adding and removing members from a relationship. Test changing member roles. Verify RLS prevents unauthorized actions. Check data consistency in the `relationship_members` table.",
+        "priority": "high",
+        "dependencies": [
+          13,
+          14
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Implement Core Individual Expense Recording",
+        "description": "Implement the core functionality for recording individual expenses, including amount, description, category, and currency. Store data in the `expenses` table.",
+        "details": "Create an expense creation form using React Hook Form and Zod. Include fields for amount, description, category (use predefined or allow custom), and currency. Save the expense data to the `expenses` table, linking it to the creating user and potentially a default personal relationship if no shared one is selected.",
+        "testStrategy": "Test creating individual expenses with various details. Verify data validation works correctly. Ensure expenses are saved accurately in the `expenses` table.",
+        "priority": "high",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "Implement Shared Expense Creation and Splitting",
+        "description": "Extend expense recording to support shared expenses within a relationship and implement the logic for splitting expenses (equal, percentage, custom amounts). Store splits in the `expense_splits` table.",
+        "details": "Modify the expense form to allow selecting a relationship. Add options for split types (equal, percentage, custom). Implement client-side logic to calculate amounts for each member based on the split type. Save the main expense record and then insert multiple entries into the `expense_splits` table for each member involved.",
+        "testStrategy": "Test creating shared expenses with equal, percentage, and custom splits. Verify the calculated amounts in `expense_splits` are correct for different scenarios and numbers of members. Ensure expenses are linked to the correct relationship.",
+        "priority": "high",
+        "dependencies": [
+          16,
+          13,
+          15
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "Implement Receipt Capture and Storage",
+        "description": "Implement functionality to capture and upload receipt images associated with expenses using Supabase Storage.",
+        "details": "Add a file input field to the expense form. Use the Supabase Storage client to upload the image file to a designated bucket. Store the returned public or signed URL in the `receipt_url` column of the `expenses` table. Handle file type and size validation.",
+        "testStrategy": "Test uploading different image file types (if supported). Verify the image is successfully uploaded to Supabase Storage. Ensure the correct URL is saved in the `expenses` table. Test viewing the uploaded receipt image.",
+        "priority": "medium",
+        "dependencies": [
+          16,
+          17
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 19,
+        "title": "Implement Debt Calculation Logic",
+        "description": "Develop the logic to calculate the net debt between users within a relationship based on the recorded expenses and splits.",
+        "details": "Implement a function (either client-side or a Supabase SQL function/RPC) that queries the `expense_splits` table for a given relationship. Aggregate the amounts owed and paid by each user to determine who owes whom and the net amount. Consider using SQL window functions or group by clauses for efficient calculation.",
+        "testStrategy": "Create various shared expense scenarios with different splits and members. Run the debt calculation logic and verify the calculated net amounts between users are correct. Test edge cases like zero expenses or all expenses paid.",
+        "priority": "medium",
+        "dependencies": [
+          17
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "Build Dashboard Layout and Summary Widgets",
+        "description": "Build the main dashboard interface to display expense summaries, debt calculations, and recent activity for the user and their relationships.",
+        "details": "Create the dashboard layout components. Fetch relevant data using React Query: user's expenses, relationships they belong to, calculated debts (using the logic from task 19), and recent expense activity. Display this information using summary widgets and lists. Ensure components are responsive and integrate with the theme system.",
+        "testStrategy": "Verify the dashboard displays accurate summaries of expenses and debts. Test responsiveness on different screen sizes. Ensure recent activity feed is up-to-date. Check that the theme system is applied correctly to dashboard elements.",
+        "priority": "medium",
+        "dependencies": [
+          16,
+          17,
+          19,
+          13
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 21,
+        "title": "Setup Testing Framework and Initial Tests",
+        "description": "Set up the testing framework (Jest, React Testing Library) and write initial unit and integration tests for core application logic and components.",
+        "details": "Install Jest, React Testing Library, and necessary Babel/TypeScript configurations. Configure the test environment. Write unit tests for Zustand stores, utility functions, and validation schemas (Zod). Write basic integration tests for key components like the login form, relationship creation form, and expense form using React Testing Library.",
+        "testStrategy": "Run the test suite to ensure it executes without errors. Verify that the initial tests for core functionalities pass. Check test coverage reports to track progress.",
+        "priority": "medium",
+        "dependencies": [
+          11,
+          13,
+          16
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-03T06:24:17.087Z",
+      "updated": "2025-07-03T06:30:56.438Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

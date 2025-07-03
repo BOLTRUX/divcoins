@@ -1,0 +1,141 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Testing Framework",
+        "description": "Set up the testing framework using Jest and React Testing Library as specified in the PRD. Configure test runners and necessary setup files.",
+        "details": "Install Jest, React Testing Library, and necessary Babel/TypeScript configurations. Create a basic test setup file. Write a simple test case for a utility function or a small component to verify the setup.",
+        "testStrategy": "Run `npm test` or `yarn test` to ensure tests execute correctly and the basic test case passes.",
+        "priority": "medium",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement Supabase Authentication",
+        "description": "Complete the implementation of Supabase authentication flows including sign up, login, logout, password reset, email verification, social login (Google, Apple), and JWT-based session management. Ensure user profiles are created/updated correctly.",
+        "details": "Utilize Supabase client library. Implement authentication functions (signUp, signInWithPassword, signInWithOAuth, signOut, resetPasswordForEmail, verifyOtp). Store user-specific data (like theme preferences) in the `Users` table upon sign up or first login. Handle JWT session management and multi-device sync via Supabase's built-in features. Use React Hook Form and Zod for form validation.",
+        "testStrategy": "Manually test sign up, login (password and social), logout, password reset, and email verification flows. Verify user data and theme preferences are stored in the `Users` table. Write unit/integration tests for authentication hooks and service functions.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement Relationship Management Backend",
+        "description": "Implement the backend logic for the Relationship Management System. This includes creating groups, managing group members, handling invitations (email/phone), assigning roles (admin, member, viewer), and managing group settings.",
+        "details": "Utilize Supabase database and potentially Edge Functions if complex logic is needed. Create functions/services to interact with `Relationships` and `Relationship_Members` tables. Implement logic for creating a new relationship entry, adding members (via invitation code or email), setting roles, and removing members. Ensure Row Level Security (RLS) is correctly configured on these tables.",
+        "testStrategy": "Write backend integration tests for group creation, member addition/removal, and role assignment functions. Manually test these actions via a temporary interface or API calls. Verify data integrity in the `Relationships` and `Relationship_Members` tables.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement Relationship Management Frontend",
+        "description": "Build the frontend UI components and pages for managing user relationships. This includes interfaces for creating new groups, joining existing groups (via invitation), viewing group members, managing roles, and leaving groups.",
+        "details": "Create React components for 'Create Group', 'Join Group', 'Group Details', and 'Member Management'. Use React Hook Form and Zod for form validation. Integrate with the backend services implemented in Task 3. Ensure UI reflects different user roles and permissions. Implement invitation flow UI.",
+        "testStrategy": "Manually test group creation, joining, member management (add/remove/change role) flows with multiple user accounts. Verify UI updates correctly based on backend responses and user roles. Write integration tests for key UI flows.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Expense Management Backend",
+        "description": "Implement the backend logic for core Expense Tracking. This includes recording individual and shared expenses, implementing automatic and custom splitting logic (equal, percentage, custom amounts), handling expense categories, and managing receipt uploads.",
+        "details": "Utilize Supabase database and storage. Create functions/services to interact with `Expenses` and `Expense_Splits` tables. Implement logic for creating an expense entry, associating it with a relationship (if shared), calculating splits based on `split_type`, and storing split details in `Expense_Splits`. Implement receipt upload to Supabase Storage and store the URL in the `Expenses` table. Configure RLS for these tables.",
+        "testStrategy": "Write backend integration tests for expense creation (individual and shared), different splitting methods, and receipt upload. Manually test via temporary interface/API. Verify data in `Expenses`, `Expense_Splits`, and Supabase Storage.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Expense Management Frontend",
+        "description": "Build the frontend UI components and pages for Expense Tracking. This includes forms for adding new expenses (with splitting options and receipt upload), displaying lists of expenses (with filtering/search), and viewing expense details.",
+        "details": "Create React components for 'Add Expense Form', 'Expense List', and 'Expense Details'. Use React Hook Form and Zod for validation. Integrate with backend services from Task 5. Implement UI for selecting split type, entering custom amounts/percentages, and uploading receipts. Ensure expense list supports filtering and search as specified.",
+        "testStrategy": "Manually test adding individual and shared expenses with all splitting options. Test receipt upload functionality. Verify expense list displays correctly and filtering/search works. Write integration tests for the expense creation and listing flows.",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Debt Calculation Logic",
+        "description": "Implement the logic for automatic debt calculation between users within a relationship based on recorded expenses and splits.",
+        "details": "Create a backend function or database query that analyzes `Expenses` and `Expense_Splits` data for a given relationship. Calculate who owes whom and how much, potentially optimizing settlements to minimize transactions. Store or compute this data efficiently for display.",
+        "testStrategy": "Write unit tests for the debt calculation algorithm with various expense and split scenarios. Manually verify calculations against expected outcomes for sample data sets. Ensure the logic handles multiple users and complex splits correctly.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Build Dashboard Backend Data Aggregation",
+        "description": "Build the backend data aggregation services required for the Dashboard. This includes fetching and summarizing expense data, calculating current debt/credit statuses, and preparing data for charts and reports.",
+        "details": "Create backend queries or services to aggregate data from `Expenses`, `Expense_Splits`, and the results of the debt calculation (Task 7). Prepare data structures suitable for consumption by frontend dashboard components, including summaries by category, time period, and user, as well as the current debt/settlement status.",
+        "testStrategy": "Write backend integration tests for the data aggregation queries/services. Verify that the aggregated data matches expected summaries and debt calculations based on sample database states.",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Build Dashboard Frontend UI",
+        "description": "Build the frontend UI for the main Dashboard. This includes creating the responsive layout and implementing widgets to display expense summaries, debt calculation results, and recent activity feed, integrating with the theme system.",
+        "details": "Create React components for the Dashboard layout and individual widgets (e.g., 'Expense Summary Card', 'Debt Status Widget', 'Recent Activity List'). Fetch aggregated data from the backend services (Task 8). Ensure all components are themeable using the existing OKLCH theme system. Implement basic chart display for summaries if required by the layout.",
+        "testStrategy": "Manually test the dashboard layout and widgets on different screen sizes. Verify that data fetched from the backend is displayed correctly. Test theme switching on the dashboard components. Write integration tests for dashboard data fetching and rendering.",
+        "priority": "medium",
+        "dependencies": [
+          8
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Implement Global Error Handling and Loading States",
+        "description": "Implement a consistent system for handling errors and displaying loading states across the application, particularly for asynchronous operations like API calls and data fetching.",
+        "details": "Utilize React Query's built-in loading and error states. Implement global error boundaries for catching rendering errors. Create user-friendly error messages and display them appropriately (e.g., toast notifications, error pages). Implement loading indicators (spinners, skeletons) for data fetching and form submissions. Ensure a consistent user experience for async operations.",
+        "testStrategy": "Manually test various scenarios that trigger loading states (e.g., slow network) and errors (e.g., invalid input, backend failure) across the implemented features (Auth, Relationships, Expenses, Dashboard). Verify that loading indicators are shown and error messages are user-friendly and informative. Write integration tests to simulate API errors and verify error handling.",
+        "priority": "high",
+        "dependencies": [
+          2,
+          4,
+          6,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-03T06:41:44.806Z",
+      "updated": "2025-07-03T06:41:44.806Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

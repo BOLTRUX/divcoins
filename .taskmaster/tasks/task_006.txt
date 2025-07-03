@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Implement Expense Management Frontend
+# Status: pending
+# Dependencies: 5
+# Priority: high
+# Description: Build the frontend UI components and pages for Expense Tracking. This includes forms for adding new expenses (with splitting options and receipt upload), displaying lists of expenses (with filtering/search), and viewing expense details.
+# Details:
+Create React components for 'Add Expense Form', 'Expense List', and 'Expense Details'. Use React Hook Form and Zod for validation. Integrate with backend services from Task 5. Implement UI for selecting split type, entering custom amounts/percentages, and uploading receipts. Ensure expense list supports filtering and search as specified.
+
+# Test Strategy:
+Manually test adding individual and shared expenses with all splitting options. Test receipt upload functionality. Verify expense list displays correctly and filtering/search works. Write integration tests for the expense creation and listing flows.

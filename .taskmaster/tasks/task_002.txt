@@ -1,0 +1,11 @@
+# Task ID: 2
+# Title: Implement Supabase Authentication
+# Status: pending
+# Dependencies: None
+# Priority: high
+# Description: Complete the implementation of Supabase authentication flows including sign up, login, logout, password reset, email verification, social login (Google, Apple), and JWT-based session management. Ensure user profiles are created/updated correctly.
+# Details:
+Utilize Supabase client library. Implement authentication functions (signUp, signInWithPassword, signInWithOAuth, signOut, resetPasswordForEmail, verifyOtp). Store user-specific data (like theme preferences) in the `Users` table upon sign up or first login. Handle JWT session management and multi-device sync via Supabase's built-in features. Use React Hook Form and Zod for form validation.
+
+# Test Strategy:
+Manually test sign up, login (password and social), logout, password reset, and email verification flows. Verify user data and theme preferences are stored in the `Users` table. Write unit/integration tests for authentication hooks and service functions.

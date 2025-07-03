@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Build Dashboard Backend Data Aggregation
+# Status: pending
+# Dependencies: 5, 7
+# Priority: medium
+# Description: Build the backend data aggregation services required for the Dashboard. This includes fetching and summarizing expense data, calculating current debt/credit statuses, and preparing data for charts and reports.
+# Details:
+Create backend queries or services to aggregate data from `Expenses`, `Expense_Splits`, and the results of the debt calculation (Task 7). Prepare data structures suitable for consumption by frontend dashboard components, including summaries by category, time period, and user, as well as the current debt/settlement status.
+
+# Test Strategy:
+Write backend integration tests for the data aggregation queries/services. Verify that the aggregated data matches expected summaries and debt calculations based on sample database states.

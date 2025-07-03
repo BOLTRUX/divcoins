@@ -1,0 +1,11 @@
+# Task ID: 4
+# Title: Implement Relationship Management Frontend
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Build the frontend UI components and pages for managing user relationships. This includes interfaces for creating new groups, joining existing groups (via invitation), viewing group members, managing roles, and leaving groups.
+# Details:
+Create React components for 'Create Group', 'Join Group', 'Group Details', and 'Member Management'. Use React Hook Form and Zod for form validation. Integrate with the backend services implemented in Task 3. Ensure UI reflects different user roles and permissions. Implement invitation flow UI.
+
+# Test Strategy:
+Manually test group creation, joining, member management (add/remove/change role) flows with multiple user accounts. Verify UI updates correctly based on backend responses and user roles. Write integration tests for key UI flows.

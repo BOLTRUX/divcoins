@@ -1,0 +1,11 @@
+# Task ID: 7
+# Title: Implement Debt Calculation Logic
+# Status: pending
+# Dependencies: 5
+# Priority: medium
+# Description: Implement the logic for automatic debt calculation between users within a relationship based on recorded expenses and splits.
+# Details:
+Create a backend function or database query that analyzes `Expenses` and `Expense_Splits` data for a given relationship. Calculate who owes whom and how much, potentially optimizing settlements to minimize transactions. Store or compute this data efficiently for display.
+
+# Test Strategy:
+Write unit tests for the debt calculation algorithm with various expense and split scenarios. Manually verify calculations against expected outcomes for sample data sets. Ensure the logic handles multiple users and complex splits correctly.

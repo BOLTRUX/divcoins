@@ -1,388 +1,246 @@
-# CLAUDE.md
+# DivCoins - Backend Complete, UI Ready for Development
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## 🎯 Project Status: Backend Complete ✅
 
-## 📚 NAVEGACIÓN DE DOCUMENTOS
+**DivCoins** is a smart expense sharing application with a **fully functional backend** and **clean architecture**. All business logic, authentication, and database operations are implemented and tested. The UI has been intentionally removed to allow for modern interface development.
 
-### 🎯 Archivo Central de Referencia
-**ESTE ARCHIVO (CLAUDE.md)** - Guía principal para desarrollo
+## 📚 Essential Files for Development
 
-### 📊 Project Management & Tracking
-- **PROJECT_TRACKER.md** - Dashboard ejecutivo, progreso diario
-  - **Úsalo para**: Conocer estado general, métricas, próximos milestones
-  - **Actualizar**: Diariamente al final del día
-  - **Estado actual**: 85% progreso, Fase 1 Foundation
-  
-- **CURRENT_STATUS.md** - Análisis técnico profundo
-  - **Úsalo para**: Entender gaps técnicos, blockers, próximos pasos críticos
-  - **Actualizar**: Semanalmente o cuando hay cambios técnicos
-  - **Last update**: Foundation 85% complete, sistema de temas implementado
+### 🔧 Core Backend (Ready to Use)
+- **Authentication**: `src/stores/authStore.ts` + `src/hooks/useAuth.ts`
+- **Services**: `src/services/relationshipService.ts` + `src/services/expenseService.ts`  
+- **Database**: Supabase fully configured with RLS policies
+- **Types**: `src/types/auth.ts` for TypeScript definitions
 
-- **ROADMAP_DETAILED.md** - Plan completo de desarrollo  
-  - **Úsalo para**: Entender tareas específicas, dependencias, estimaciones
-  - **Actualizar**: Mensualmente o al completar fases
-  - **Scope**: 3 fases, 18-26 semanas timeline
+### 📖 Context Documentation (Complete Project Knowledge)
+- **CONTEXT.md** - Complete backend architecture (454 lines)
+- **UI_DEVELOPMENT_GUIDE.md** - Complete guide for UI developers (244 lines)
+- **CURRENT_STATUS.md** - Detailed project status analysis (335 lines)
+- **PROJECT_TRACKER.md** - Executive dashboard with metrics (155 lines)
+- **TASKS_BREAKDOWN.md** - Granular task list (156 tasks, 357 lines)
+- **ROADMAP_DETAILED.md** - Development phases breakdown
+- **REGLAS.md** - Project rules and conventions
+- **README.md** - Main project documentation
+- **CLAUDE.md** - This file (project context)
+- **package.json** - Clean dependencies (only backend essentials)
 
-- **TASKS_BREAKDOWN.md** - Tracking granular de 156 tareas
-  - **Úsalo para**: Marcar progress diario, gestionar sprints
-  - **Actualizar**: Diariamente al completar tareas
-  - **Current**: 580 story points, 23 completadas (15%)
+### 🤖 TaskMaster AI Integration
+- **.taskmaster/tasks/tasks.json** - AI-generated task list (11KB, 10 core tasks)
+- **.taskmaster/tasks/task_001.txt** to **task_010.txt** - Individual task details
+- **.taskmaster/config.json** - AI model configuration
+- **.taskmaster/state.json** - Current TaskMaster state
 
-- **REGLAS.md** - 🚨 **CRÍTICO: Reglas de desarrollo y auditoría pre-commit**
-  - **Úsalo para**: SIEMPRE antes de hacer commit, evitar errores en CI/CD
-  - **Actualizar**: Al agregar nuevas reglas de calidad
-  - **OBLIGATORIO**: Ejecutar lint + type-check + build antes de cada commit
+## 🏗️ Architecture Overview
 
-### 🏗️ Architecture & Specifications  
-- **CONTEXT.md** - Biblia técnica del proyecto (606 líneas)
-  - **Úsalo para**: Decisiones arquitecturales, especificaciones técnicas
-  - **Actualizar**: Solo cuando hay cambios arquitecturales mayores
-  - **Contains**: Complete system architecture, database schema, development standards
+### Backend Stack (✅ Complete)
+- **React 19** + **TypeScript** + **Vite**
+- **Supabase** (Auth + PostgreSQL + Storage + RLS)
+- **Zustand** for state management
+- **Zod** for validation
 
-## Essential Commands
+### What's Working
+```typescript
+// Authentication
+const { user, signIn, signOut, loading } = useAuth()
 
-### Development
-```bash
-npm run dev          # Start development server with Vite + HMR
-npm run build        # TypeScript compilation + Vite production build  
-npm run lint         # ESLint code linting
-npm run preview      # Preview production build locally
+// Relationship Management  
+const groups = await relationshipService.getUserRelationships()
+await relationshipService.createRelationship({ name: 'Roommates', type: 'roommates' })
+
+// Expense Management
+const expenses = await expenseService.getRelationshipExpenses(groupId)
+await expenseService.createExpense({
+  relationship_id: groupId,
+  title: 'Groceries',
+  amount: 50.00,
+  splits: [{ user_id: 'user1', amount: 25.00 }]
+})
+
+// Debt Calculation
+const debts = await expenseService.calculateDebts(groupId)
 ```
 
-### Shadcn/ui Components
+## 🎨 UI Development Instructions
+
+### Quick Start
+1. **Choose UI Framework** (recommended: Shadcn/ui + Tailwind)
+2. **Read UI_DEVELOPMENT_GUIDE.md** for complete instructions
+3. **Start with authentication forms** using `useAuth()` hook
+4. **Build dashboard** using backend services
+
+### Essential Commands
 ```bash
-npx shadcn@latest add [component]  # Add shadcn/ui components
-npx shadcn@latest init             # Reinitialize shadcn/ui if needed
+npm install          # Install dependencies
+npm run dev          # Start development server  
+npm run build        # Build for production
+npm run type-check   # TypeScript validation
 ```
 
-## Project Architecture
+### Key User Flows to Implement
+1. **Authentication**: Login/signup forms with Google OAuth
+2. **Dashboard**: Overview of expenses, debts, recent activity
+3. **Groups**: Create/manage groups, invite members
+4. **Expenses**: Add/edit expenses, split bills, upload receipts
+5. **Settlement**: View debts, mark as paid, settlement suggestions
 
-### Tech Stack Overview
-- **DivCoins v2.0**: Social fintech app for shared expense management with advanced theming
-- **Frontend**: React 19 + TypeScript + Vite
-- **Backend**: Supabase (Auth + PostgreSQL + Storage + Real-time)
-- **State**: Zustand for global state management
-- **UI**: TailwindCSS v4 + Shadcn/ui (New York style) + advanced theming system
-- **Data Fetching**: TanStack React Query
-- **Forms**: React Hook Form + Zod validation
+## 🔐 Environment Setup
 
-### Key Architectural Decisions
+Create `.env.local`:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-#### Theming System (Core Differentiator)
-- **TweakCN Integration**: Scalable system designed for 1000+ themes
-- **OKLCH Color System**: Advanced color management over traditional HSL/RGB
-- **CSS Variables**: Dynamic theme switching without rebuilds
-- **Performance**: Lazy loading and caching strategies for theme assets
+## 📊 Database Schema (Supabase)
 
-#### Component Structure
+### Core Tables
+- **users**: User profiles and preferences
+- **relationships**: Groups (couples, roommates, friends, family)
+- **relationship_members**: Group membership with roles
+- **expenses**: Individual expenses with metadata
+- **expense_splits**: How expenses are split between users
+
+### Security
+- **Row Level Security (RLS)**: Fully configured
+- **Auth policies**: Users can only access their own data
+- **Real-time subscriptions**: Ready for collaborative features
+
+## 🚀 Deployment
+
+- **Development**: `npm run dev` (auto-reload)
+- **Production**: Automatic deployment via Vercel on git push
+- **CI/CD**: GitHub Actions configured
+- **Environment**: Production Supabase project ready
+
+## 📱 Design Considerations
+
+### User Experience Goals
+- **Mobile-first**: Primary interface should be mobile-optimized
+- **Fast interactions**: Quick expense entry and splitting
+- **Clear debt visualization**: Easy to see who owes what
+- **Intuitive navigation**: Minimal clicks to core functions
+
+### Technical Requirements
+- **TypeScript**: All components should be fully typed
+- **Responsive**: Works on all screen sizes
+- **Accessible**: WCAG 2.1 compliant
+- **Performance**: Fast loading and smooth interactions
+
+## 🧪 Testing Strategy
+
+### Backend (Already Tested)
+- ✅ Authentication flows working
+- ✅ Database operations tested
+- ✅ RLS policies verified
+- ✅ API endpoints functional
+
+### UI Testing (To Implement)
+- React Testing Library for components
+- Cypress/Playwright for E2E flows
+- Real Supabase data integration tests
+
+## 🎯 MVP Feature Priority
+
+### Phase 1: Core Authentication & Groups
+1. Login/signup with Google OAuth
+2. User profile management
+3. Create and join groups
+4. Invite members via email
+
+### Phase 2: Expense Management  
+1. Add expense form with splitting
+2. Expense list/feed
+3. Receipt upload
+4. Edit/delete expenses
+
+### Phase 3: Debt Settlement
+1. Debt calculation display
+2. Settlement suggestions
+3. Mark debts as paid
+4. Settlement history
+
+### Phase 4: Analytics & Reports
+1. Spending charts
+2. Category breakdowns
+3. Export functionality
+4. Notifications
+
+## 🛠️ Development Guidelines
+
+### Code Standards
+- Use TypeScript for all new code
+- Follow ESLint configuration
+- Use existing Zustand stores for state
+- Implement proper error handling
+- Add loading states for async operations
+
+### Component Structure
 ```
 src/components/
-├── ui/              # Shadcn/ui base components (future)
-├── ThemeProvider.tsx    # ✅ Theme context provider
-├── ThemeToggle.tsx      # ✅ Light/dark mode switcher  
-├── ThemeSelector.tsx    # ✅ Theme selection UI
-├── SupabaseTest.tsx     # ✅ Authentication testing
-├── auth/            # Authentication components (future)
-├── dashboard/       # Dashboard and analytics (future)
-├── expenses/        # Expense management (future)
-├── relationships/   # User relationships and groups (future)
-├── inventory/       # Inventory tracking (future)
-├── debts/           # Debt calculation and settlement (future)
-└── reports/         # Reporting and insights (future)
+├── ui/           # Base components (Button, Input, Card)
+├── forms/        # Form components  
+├── layout/       # Navigation, header, sidebar
+└── features/     # Feature-specific components
+
+src/pages/        # Route-level components
+├── Dashboard.tsx
+├── Login.tsx  
+├── Groups.tsx
+└── Expenses.tsx
 ```
 
-#### State Management Pattern
-- **Zustand Stores**: 
-  - ✅ **ThemeStore**: Complete with persistence, preview, favorites
-  - 🔄 AuthStore (future)
-  - 🔄 ExpenseStore (future) 
-  - 🔄 RelationshipStore (future)
-- **React Query**: Server state management with optimistic updates (future)
-- **Type Safety**: Full TypeScript coverage with strict configuration
+### State Management
+- **Authentication**: Use existing `useAuth()` hook
+- **Application state**: Use Zustand stores
+- **Server state**: Consider React Query for caching
+- **Form state**: React Hook Form recommended
 
-#### Path Aliases
-- `@/` → `./src/` (configured in vite.config.ts)
-- All imports use absolute paths from src root
+## 🚀 Ready for UI Development!
 
-### Database Architecture (Supabase)
-- **Row Level Security (RLS)**: Enforced on all tables
-- **Real-time**: Subscriptions for collaborative features
-- **Multi-tenancy**: Users can belong to multiple relationship groups
-- **Theme Preferences**: Stored per user and per relationship group
+The backend is production-ready with:
+- ✅ Authentication system working
+- ✅ Database schema complete  
+- ✅ Business logic implemented
+- ✅ API services ready
+- ✅ TypeScript types defined
+- ✅ Error handling implemented
 
-### Styling Architecture
+**Next step**: Choose a UI framework and start building beautiful interfaces! 🎨
 
-#### TailwindCSS v4 Configuration
-- **Primary Colors**: Lime-based palette (lime-50 to lime-900)
-- **CSS Variables**: Theme-aware color system
-- **Component Variants**: Class Variance Authority (CVA) for component styling
-- **Utility Classes**: Tailwind-merge for conditional class merging
+---
 
-#### Responsive Design
-- **Mobile-first**: All components designed for mobile experience first
-- **Touch-friendly**: Minimum 44px touch targets
-- **Progressive Enhancement**: Enhanced features for larger screens
+## 📋 **Critical Context Files Reference**
 
-### 📱 Mobile Apps Strategy
-**IMPORTANT**: DivCoins is designed for multi-platform deployment without code rewrite
+### **🎯 For Project Understanding**
+1. **CURRENT_STATUS.md** - Read FIRST for complete project state analysis
+2. **PROJECT_TRACKER.md** - Executive dashboard with metrics and progress
+3. **CONTEXT.md** - Deep technical architecture documentation
 
-#### PWA (Progressive Web App) - Phase 1 ⭐ RECOMMENDED
-- **Timeline**: +1 week after MVP web completion
-- **Code Reuse**: 100% - Same React codebase
-- **Features**: 
-  - ✅ Installable from browser ("Add to Home Screen")
-  - ✅ Offline functionality with cached themes
-  - ✅ Push notifications for new expenses
-  - ✅ Native mobile feel and performance
-  - ✅ Access to device features (camera for receipts)
-- **App Stores**: Can be published to both Google Play and Apple App Store
-- **Implementation**: Add Web App Manifest + enhanced Service Worker
+### **📝 For Task Management**  
+4. **TASKS_BREAKDOWN.md** - Granular list of 156 specific tasks
+5. **.taskmaster/tasks/tasks.json** - AI-generated core tasks (10 main tasks)
+6. **ROADMAP_DETAILED.md** - Development phases and planning
 
-#### Capacitor (Hybrid Native) - Phase 2 🚀 IF NEEDED
-- **Timeline**: +2-3 weeks if app stores required
-- **Code Reuse**: 95% - React app wrapped in native container
-- **Result**: Real APK (Android) + IPA (iOS) files
-- **Features**:
-  - ✅ Full native performance
-  - ✅ All native device APIs
-  - ✅ Google Play Store + Apple App Store ready
-  - ✅ Automatic updates through web
-- **Commands**:
-  ```bash
-  npm install @capacitor/core @capacitor/android @capacitor/ios
-  npx cap init
-  npx cap add android ios
-  npx cap build
-  ```
+### **🛠️ For Implementation**
+7. **UI_DEVELOPMENT_GUIDE.md** - Step-by-step UI development guide
+8. **TWEAKCN_UI_DESIGN_GUIDE.md** - Complete TweakCN visual design specs 🎨
+9. **REGLAS.md** - Project rules and coding conventions
+10. **README.md** - Main project documentation
 
-#### React Native - ❌ NOT RECOMMENDED
-- **Timeline**: +3-6 months (complete rewrite)
-- **Code Reuse**: 0% - Start from scratch
-- **Reason**: Unnecessary for DivCoins use case
-
-#### Mobile Development Priority
-1. **Complete web MVP** (current phase)
-2. **Convert to PWA** - Perfect for personal use + testing with girlfriend
-3. **Evaluate Capacitor** - Only if app store presence needed later
-4. **Theme system works perfectly** on mobile PWAs
-
-**For Implementation Details**: See ROADMAP_DETAILED.md Phase 2 Mobile Strategy
-
-### Development Workflow
-
-#### Code Quality
-- **ESLint**: Configured with React hooks and TypeScript rules
-- **TypeScript**: Strict mode enabled with comprehensive type checking
-- **Conventional Commits**: Required for version control (feat, fix, docs, style, refactor, perf, theme)
-
-#### Performance Requirements
-- **Lighthouse Score**: >90 target
-- **Theme Switch Time**: <100ms requirement
-- **First Contentful Paint**: <2s target
-- **Code Splitting**: React.lazy for heavy components
-
-### Security Considerations
-- **Supabase RLS**: All data access controlled by Row Level Security policies
-- **Type Validation**: Zod schemas for all API boundaries  
-- **Privacy Settings**: Configurable data sharing between relationship members
-- **Theme Preferences**: Isolated per user/relationship with proper access controls
-
-### Critical Implementation Notes
-
-#### Theme System Integration
-- All new components must support dynamic theming via CSS variables
-- Use OKLCH color format when possible for better color accuracy
-- Implement lazy loading for theme assets to maintain performance
-- Test theme switching functionality in all new features
-
-#### Component Development
-- Follow Shadcn/ui patterns for consistency
-- Implement proper loading states for all async operations
-- Use Framer Motion for functional animations only
-- Ensure mobile-first responsive design
-
-#### State Management
-- Zustand stores should follow the established pattern in CONTEXT.md
-- Implement optimistic updates for better UX
-- Use React Query for all server state management
-- Maintain type safety across all state operations
-
-## 🔄 WORKFLOW DE DESARROLLO DIARIO
-
-### 🚨 **BEFORE EVERYTHING: READ REGLAS.md**
-- **SIEMPRE** revisar REGLAS.md antes de hacer cualquier commit
-- **OBLIGATORIO** ejecutar auditoría pre-commit (lint + type-check + build)
-- **NUNCA** saltarse las verificaciones
-
-### 🌅 Morning Routine (5 min)
-1. **Leer PROJECT_TRACKER.md** 
-   - Revisar progreso de ayer
-   - Identificar blockers nuevos
-   - Confirmar milestone actual
-
-2. **Consultar CURRENT_STATUS.md**
-   - Verificar blockers críticos actuales
-   - Revisar próximos pasos inmediatos
-   - Confirmar prioridades técnicas
-
-3. **Planear en TASKS_BREAKDOWN.md**
-   - Marcar tareas del día como 🔄 In Progress
-   - Verificar dependencias de tareas
-   - Estimar tiempo realista
-
-### 🌆 Evening Routine (15 min)
-1. **🚨 AUDITORÍA PRE-COMMIT (OBLIGATORIO)**
-   - Ejecutar: `npm run lint && npm run type-check && npm run build`
-   - Si falla alguno: ARREGLAR ANTES DE COMMIT
-
-2. **Actualizar TASKS_BREAKDOWN.md**
-   - Marcar tareas completadas: ✅
-   - Mover tareas bloqueadas: 🚫
-   - Añadir nuevas tareas descubiertas
-
-3. **Actualizar PROJECT_TRACKER.md**
-   - Recalcular progreso de fase
-   - Actualizar métricas clave  
-   - Documentar wins del día
-   - Actualizar timestamp
-
-4. **COMMIT SEGURO**
-   - Solo después de pasar auditoría pre-commit
-   - Verificar GitHub Actions ✅
-   - Verificar Vercel Deploy ✅
-
-### 📅 Weekly Review (30 min - Viernes)
-1. **Actualizar CURRENT_STATUS.md**
-   - Análisis técnico de la semana
-   - Identificar nuevos gaps/blockers
-   - Actualizar estimaciones
-   - Celebrar logros
-
-2. **Velocity Analysis**
-   - Calcular tasks completadas/semana
-   - Actualizar story points velocity
-   - Ajustar estimaciones futuras
-
-## ✅ ESTADO ACTUAL - FOUNDATION COMPLETADA
-
-### 🎉 **BLOCKERS RESUELTOS**
-1. ✅ **Build System Fixed** 
-   - `npm run build` funcionando correctamente
-   - **Resuelto**: Dependencies y configuración TypeScript
-   - **Status**: Production builds working
-
-2. ✅ **Git History Established**
-   - GitHub repository configurado: https://github.com/[user]/gastos
-   - **Resuelto**: Initial commits + complete Git workflow
-   - **Status**: Version control fully operational
-
-3. ✅ **Environment Configuration Complete**
-   - Supabase configurado con environment variables
-   - **Resuelto**: Database + Authentication + RLS policies
-   - **Status**: Backend connection established
-
-4. ✅ **CI/CD Pipeline Active**
-   - GitHub Actions + Vercel deployment working
-   - **Resuelto**: Automated testing + deployment
-   - **Status**: Production deployment at https://gastos-[hash].vercel.app
-
-### 🚀 **SISTEMA DE TEMAS IMPLEMENTADO**
-- ✅ **ThemeStore**: Zustand store with persistence
-- ✅ **Theme Hooks**: Complete React hooks system  
-- ✅ **TweakCN Integration**: First theme "Mint Fresh" integrated
-- ✅ **Theme UI**: ThemeSelector + ThemeToggle components
-- ✅ **OKLCH Colors**: Advanced color system implemented
-
-**Referencia completa**: CURRENT_STATUS.md
-
-## 📋 GUÍA DE MANTENIMIENTO DE DOCUMENTOS
-
-### 🎯 Responsabilidades por Archivo
-| Documento | Frecuencia | Cuándo Actualizar |
-|-----------|------------|-------------------|
-| PROJECT_TRACKER.md | Diario | Final del día de trabajo |
-| TASKS_BREAKDOWN.md | Diario | Al completar/iniciar tareas |
-| CURRENT_STATUS.md | Semanal | Viernes EOD |
-| ROADMAP_DETAILED.md | Mensual | Al completar milestones |
-| CONTEXT.md | Ocasional | Cambios arquitecturales |
-| CLAUDE.md | Ocasional | Nuevos workflows/tools |
-
-### 🔄 Templates de Commits
-```bash
-# Daily updates
-git commit -m "docs: update PROJECT_TRACKER with daily progress"
-git commit -m "docs: mark tasks complete in TASKS_BREAKDOWN"
-
-# Technical updates  
-git commit -m "docs: update CURRENT_STATUS with build fix"
-git commit -m "docs: add new blocker to tracking system"
-
-# Feature development
-git commit -m "feat: implement ThemeStore with Zustand"
-git commit -m "fix: resolve rollup build dependencies"
-git commit -m "theme: integrate first TweakCN theme"
+### **📊 Usage Priority for Claude Sessions**
+```
+1. CLAUDE.md (this file) - Always loaded first
+2. CURRENT_STATUS.md - Read for project state  
+3. UI_DEVELOPMENT_GUIDE.md - Read for UI development tasks
+4. TWEAKCN_UI_DESIGN_GUIDE.md - Read for visual design specs 🎨
+5. CONTEXT.md - Read for backend understanding
+6. .taskmaster/tasks/tasks.json - Read for AI-generated tasks
+7. PROJECT_TRACKER.md - Read for metrics and progress
+8. TASKS_BREAKDOWN.md - Read for granular task details
 ```
 
-### 🎯 Quality Checks
-- ✅ All docs timestamps < 1 week old
-- ✅ PROJECT_TRACKER progress matches actual work
-- ✅ TASKS_BREAKDOWN reflects current sprint
-- ✅ No documents contradict each other
+---
 
-## 🎯 PRÓXIMOS PASOS CRÍTICOS
+*This project uses modern React patterns and is ready for immediate UI development. All complex backend logic is handled - focus on creating an amazing user experience.*
 
-### 🔴 **ESTA SEMANA (CRÍTICO)**
-Basado en CURRENT_STATUS.md analysis:
-
-#### Día 1-2: Resolver Blockers
-1. **Fix build system** - npm run build funcionando
-2. **Git setup** - Initial commit + GitHub repo  
-3. **Environment** - .env.local + Supabase project
-
-#### Día 3-4: Foundation  
-4. **CI/CD pipeline** - GitHub Actions + Vercel
-5. **ThemeStore** - Zustand implementation
-6. **AuthStore** - Basic authentication
-
-#### Día 5-7: Primera Demo
-7. **Theme switching** - TweakCN integration básica
-8. **Login flow** - Authentication funcionando
-9. **Deploy** - Primera versión accessible online
-
-### 🎯 **TARGET SEMANAL**
-- ✅ Build system working
-- ✅ GitHub + CI/CD pipeline  
-- ✅ Theme switching demo
-- ✅ Authentication flow
-- ✅ First Vercel deployment
-
-**Referencia detallada**: ROADMAP_DETAILED.md  
-**Tracking granular**: TASKS_BREAKDOWN.md
-
-## ⚡ REFERENCIAS RÁPIDAS
-
-### 🔍 "¿Dónde encuentro...?"
-- **Progreso actual**: PROJECT_TRACKER.md
-- **Qué hacer hoy**: TASKS_BREAKDOWN.md  
-- **Por qué algo no funciona**: CURRENT_STATUS.md
-- **Cómo implementar X**: CONTEXT.md
-- **Cuándo estará listo**: ROADMAP_DETAILED.md
-
-### 🎯 "¿Qué hago si...?"
-- **No sé qué tarea hacer**: Consultar TASKS_BREAKDOWN.md sección "IMMEDIATE"
-- **Algo está bloqueado**: Revisar CURRENT_STATUS.md blockers
-- **Necesito arquitectura**: CONTEXT.md tiene especificaciones completas
-- **Quiero ver progreso**: PROJECT_TRACKER.md dashboard ejecutivo
-
-### 📊 "¿Cómo reporto progreso?"
-1. **Diario**: Actualizar PROJECT_TRACKER.md + TASKS_BREAKDOWN.md  
-2. **Semanal**: Actualizar CURRENT_STATUS.md con análisis técnico
-3. **Commits**: Usar conventional commits (feat:, fix:, docs:, theme:)
-4. **Issues**: Linkear a tareas específicas en TASKS_BREAKDOWN.md
-
-### Project Status
-**Current Phase**: Foundation (85% complete) - Core infrastructure implemented
-**Next Priority**: Expense tracking system → User relationships → Dashboard UI
-**Architecture**: Fully configured with modern tooling, theme system, and CI/CD pipeline
-
-**For detailed specifications**: Refer to CONTEXT.md for modules, database schema, and development standards.
+**💡 Important**: All context files are interconnected and provide different views of the same project. Always read CURRENT_STATUS.md first to understand the current state before proceeding with any development tasks.

@@ -1,0 +1,11 @@
+# Task ID: 5
+# Title: Implement Expense Management Backend
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Implement the backend logic for core Expense Tracking. This includes recording individual and shared expenses, implementing automatic and custom splitting logic (equal, percentage, custom amounts), handling expense categories, and managing receipt uploads.
+# Details:
+Utilize Supabase database and storage. Create functions/services to interact with `Expenses` and `Expense_Splits` tables. Implement logic for creating an expense entry, associating it with a relationship (if shared), calculating splits based on `split_type`, and storing split details in `Expense_Splits`. Implement receipt upload to Supabase Storage and store the URL in the `Expenses` table. Configure RLS for these tables.
+
+# Test Strategy:
+Write backend integration tests for expense creation (individual and shared), different splitting methods, and receipt upload. Manually test via temporary interface/API. Verify data in `Expenses`, `Expense_Splits`, and Supabase Storage.
