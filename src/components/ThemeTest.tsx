@@ -2,8 +2,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
+import { useEffect, useState } from 'react'
 
 export function ThemeTest() {
+  const [fontSans, setFontSans] = useState('')
+  const [fontSerif, setFontSerif] = useState('')
+  const [fontMono, setFontMono] = useState('')
+
+  useEffect(() => {
+    const updateFonts = () => {
+      setFontSans(getComputedStyle(document.documentElement).getPropertyValue('--font-sans'))
+      setFontSerif(getComputedStyle(document.documentElement).getPropertyValue('--font-serif'))
+      setFontMono(getComputedStyle(document.documentElement).getPropertyValue('--font-mono'))
+    }
+    
+    updateFonts()
+    // Update fonts when theme changes
+    const interval = setInterval(updateFonts, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div className="min-h-screen bg-background text-foreground p-8 space-y-8">
       <div className="max-w-4xl mx-auto">
@@ -76,13 +94,37 @@ export function ThemeTest() {
         <Card className="mb-8">
           <CardHeader>
             <CardTitle>Font Test</CardTitle>
-            <CardDescription>Testing custom fonts (Courier New/Source Code Pro)</CardDescription>
+            <CardDescription>Testing custom fonts from CSS variables</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <p className="font-sans text-lg">Sans Font: The quick brown fox jumps over the lazy dog</p>
-              <p className="font-serif text-lg">Serif Font: The quick brown fox jumps over the lazy dog</p>
-              <p className="font-mono text-lg">Mono Font: The quick brown fox jumps over the lazy dog</p>
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Font Sans (--font-sans):</p>
+                <p className="font-sans text-lg">The quick brown fox jumps over the lazy dog</p>
+                <p className="text-xs text-muted-foreground">Current: {fontSans || 'Not loaded'}</p>
+              </div>
+              
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Font Serif (--font-serif):</p>
+                <p className="font-serif text-lg">The quick brown fox jumps over the lazy dog</p>
+                <p className="text-xs text-muted-foreground">Current: {fontSerif || 'Not loaded'}</p>
+              </div>
+              
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Font Mono (--font-mono):</p>
+                <p className="font-mono text-lg">The quick brown fox jumps over the lazy dog</p>
+                <p className="text-xs text-muted-foreground">Current: {fontMono || 'Not loaded'}</p>
+              </div>
+              
+              <div className="mt-4 p-4 bg-muted rounded-lg">
+                <p className="text-sm font-medium mb-2">How to test font changes:</p>
+                <ol className="text-sm space-y-1">
+                  <li>1. Change <code className="bg-background px-1 rounded">--font-sans</code> in CSS</li>
+                  <li>2. Use any Google Font or system font name</li>
+                  <li>3. Example: <code className="bg-background px-1 rounded">"Inter", sans-serif</code></li>
+                  <li>4. Fonts apply automatically to all text</li>
+                </ol>
+              </div>
             </div>
           </CardContent>
         </Card>

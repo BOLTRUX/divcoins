@@ -3,108 +3,150 @@
 @tailwind utilities;
 
 @layer base {
-:root {
-  --background: 48 33.3333% 97.0588%;
-  --foreground: 48 19.6078% 20%;
-  --card: 48 33.3333% 97.0588%;
-  --card-foreground: 60 2.5641% 7.6471%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 50.7692 19.4030% 13.1373%;
-  --primary: 15.1111 55.5556% 52.3529%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 46.1538 22.8070% 88.8235%;
-  --secondary-foreground: 50.7692 8.4967% 30.0000%;
-  --muted: 44.0000 29.4118% 90%;
-  --muted-foreground: 50.0000 2.3622% 50.1961%;
-  --accent: 46.1538 22.8070% 88.8235%;
-  --accent-foreground: 50.7692 19.4030% 13.1373%;
-  --destructive: 60 2.5641% 7.6471%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 50 7.5000% 84.3137%;
-  --input: 50.7692 7.9755% 68.0392%;
-  --ring: 210 74.8031% 49.8039%;
-  --chart-1: 18.2813 57.1429% 43.9216%;
-  --chart-2: 251.4545 84.6154% 74.5098%;
-  --chart-3: 46.1538 28.2609% 81.9608%;
-  --chart-4: 256.5517 49.1525% 88.4314%;
-  --chart-5: 17.7778 60% 44.1176%;
-  --sidebar: 51.4286 25.9259% 94.7059%;
-  --sidebar-foreground: 60 2.5210% 23.3333%;
-  --sidebar-primary: 15.1111 55.5556% 52.3529%;
-  --sidebar-primary-foreground: 0 0% 98.4314%;
-  --sidebar-accent: 46.1538 22.8070% 88.8235%;
-  --sidebar-accent-foreground: 0 0% 20.3922%;
-  --sidebar-border: 0 0% 92.1569%;
-  --sidebar-ring: 0 0% 70.9804%;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --radius: 0.5rem;
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
-  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
-  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-  --tracking-normal: 0em;
-  --spacing: 0.25rem;
-}
-
-.dark {
-  --background: 60 2.7027% 14.5098%;
-  --foreground: 46.1538 9.7744% 73.9216%;
-  --card: 60 2.7027% 14.5098%;
-  --card-foreground: 48 33.3333% 97.0588%;
-  --popover: 60 2.1277% 18.4314%;
-  --popover-foreground: 60 5.4545% 89.2157%;
-  --primary: 14.7692 63.1068% 59.6078%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 48 33.3333% 97.0588%;
-  --secondary-foreground: 60 2.1277% 18.4314%;
-  --muted: 60 3.8462% 10.1961%;
-  --muted-foreground: 51.4286 8.8608% 69.0196%;
-  --accent: 48 10.6383% 9.2157%;
-  --accent-foreground: 51.4286 25.9259% 94.7059%;
-  --destructive: 0 84.2365% 60.1961%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 60 5.0847% 23.1373%;
-  --input: 52.5000 5.1282% 30.5882%;
-  --ring: 210 74.8031% 49.8039%;
-  --chart-1: 18.2813 57.1429% 43.9216%;
-  --chart-2: 251.4545 84.6154% 74.5098%;
-  --chart-3: 48 10.6383% 9.2157%;
-  --chart-4: 248.2759 25.2174% 22.5490%;
-  --chart-5: 17.7778 60% 44.1176%;
-  --sidebar: 30 3.3333% 11.7647%;
-  --sidebar-foreground: 46.1538 9.7744% 73.9216%;
-  --sidebar-primary: 0 0% 20.3922%;
-  --sidebar-primary-foreground: 0 0% 98.4314%;
-  --sidebar-accent: 60 3.4483% 5.6863%;
-  --sidebar-accent-foreground: 46.1538 9.7744% 73.9216%;
-  --sidebar-border: 0 0% 92.1569%;
-  --sidebar-ring: 0 0% 70.9804%;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --radius: 0.5rem;
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
-  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
-  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-}
+  :root {
+    --background: 120 21.0526% 92.5490%;
+    --foreground: 128.8000 78.9474% 18.6275%;
+    --card: 120 23.8095% 95.8824%;
+    --card-foreground: 128.8000 78.9474% 18.6275%;
+    --popover: 120 23.8095% 95.8824%;
+    --popover-foreground: 128.8000 78.9474% 18.6275%;
+    --primary: 123.9706 91.8919% 29.0196%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 28.8136% 88.4314%;
+    --secondary-foreground: 128.8000 78.9474% 18.6275%;
+    --muted: 120 19.2308% 89.8039%;
+    --muted-foreground: 124.0000 31.2500% 37.6471%;
+    --accent: 124.0000 38.4615% 84.7059%;
+    --accent-foreground: 128.8000 78.9474% 18.6275%;
+    --destructive: 300 62.4490% 51.9608%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 125.7143 26.5823% 84.5098%;
+    --input: 120 28.8136% 88.4314%;
+    --ring: 123.9706 91.8919% 29.0196%;
+    --chart-1: 123.9706 91.8919% 29.0196%;
+    --chart-2: 123.5294 69.3878% 38.4314%;
+    --chart-3: 123.5556 55.1020% 48.0392%;
+    --chart-4: 123.7168 53.5545% 58.6275%;
+    --chart-5: 123.6145 54.9669% 70.3922%;
+    --sidebar: 126.3158 34.5455% 89.2157%;
+    --sidebar-foreground: 128.8000 78.9474% 18.6275%;
+    --sidebar-primary: 123.9706 91.8919% 29.0196%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 124.0000 38.4615% 84.7059%;
+    --sidebar-accent-foreground: 128.8000 78.9474% 18.6275%;
+    --sidebar-border: 125.7143 26.5823% 84.5098%;
+    --sidebar-ring: 123.9706 91.8919% 29.0196%;
+    --font-sans: Courier New, monospace;
+    --font-serif: Courier New, monospace;
+    --font-mono: Courier New, monospace;
+    --radius: 0.125rem;
+    --shadow-2xs: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.07);
+    --shadow-xs: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.07);
+    --shadow-sm: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.15), 1px 1px 2px -1px hsl(125.0467 69.9346% 30% / 0.15);
+    --shadow: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.15), 1px 1px 2px -1px hsl(125.0467 69.9346% 30% / 0.15);
+    --shadow-md: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.15), 1px 2px 4px -1px hsl(125.0467 69.9346% 30% / 0.15);
+    --shadow-lg: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.15), 1px 4px 6px -1px hsl(125.0467 69.9346% 30% / 0.15);
+    --shadow-xl: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.15), 1px 8px 10px -1px hsl(125.0467 69.9346% 30% / 0.15);
+    --shadow-2xl: 1px 1px 2px 0px hsl(125.0467 69.9346% 30% / 0.38);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+  
+  .dark {
+    --background: 135.5556 52.9412% 10%;
+    --foreground: 120 77.1144% 60.5882%;
+    --card: 133.3333 52.9412% 10%;
+    --card-foreground: 120 77.1144% 60.5882%;
+    --popover: 133.3333 52.9412% 10%;
+    --popover-foreground: 120 77.1144% 60.5882%;
+    --primary: 120 77.1144% 60.5882%;
+    --primary-foreground: 135.5556 52.9412% 10%;
+    --secondary: 131.4286 58.8785% 20.9804%;
+    --secondary-foreground: 120 77.1144% 60.5882%;
+    --muted: 132.8571 58.3333% 14.1176%;
+    --muted-foreground: 120 50.6849% 42.9412%;
+    --accent: 131.4286 58.8785% 20.9804%;
+    --accent-foreground: 120 77.1144% 60.5882%;
+    --destructive: 300 78.8991% 57.2549%;
+    --destructive-foreground: 0 0% 94.9020%;
+    --border: 131.4286 58.8785% 20.9804%;
+    --input: 131.4286 58.8785% 20.9804%;
+    --ring: 120 77.1144% 60.5882%;
+    --chart-1: 120 77.1144% 60.5882%;
+    --chart-2: 120 50.6849% 42.9412%;
+    --chart-3: 120 50.8197% 35.8824%;
+    --chart-4: 124.3478 57.9832% 23.3333%;
+    --chart-5: 125.2174 62.1622% 14.5098%;
+    --sidebar: 135.5556 52.9412% 10%;
+    --sidebar-foreground: 120 77.1144% 60.5882%;
+    --sidebar-primary: 120 77.1144% 60.5882%;
+    --sidebar-primary-foreground: 135.5556 52.9412% 10%;
+    --sidebar-accent: 131.4286 58.8785% 20.9804%;
+    --sidebar-accent-foreground: 120 77.1144% 60.5882%;
+    --sidebar-border: 131.4286 58.8785% 20.9804%;
+    --sidebar-ring: 120 77.1144% 60.5882%;
+    --font-sans: VT323, monospace;
+    --font-serif: VT323, monospace;
+    --font-mono: VT323, monospace;
+    --radius: 0.125rem;
+    --shadow-2xs: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.10);
+    --shadow-xs: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.10);
+    --shadow-sm: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.20), 1px 1px 2px -1px hsl(120 69.6078% 60% / 0.20);
+    --shadow: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.20), 1px 1px 2px -1px hsl(120 69.6078% 60% / 0.20);
+    --shadow-md: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.20), 1px 2px 4px -1px hsl(120 69.6078% 60% / 0.20);
+    --shadow-lg: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.20), 1px 4px 6px -1px hsl(120 69.6078% 60% / 0.20);
+    --shadow-xl: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.20), 1px 8px 10px -1px hsl(120 69.6078% 60% / 0.20);
+    --shadow-2xl: 1px 1px 2px 0px hsl(120 69.6078% 60% / 0.50);
+  }
 
   * {
     @apply border-border;
   }
   
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans);
+    @apply bg-background text-foreground font-sans;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+  
+  code, pre {
+    @apply font-mono;
+  }
+  
+  /* Font tester - each button keeps its specific font */
+  .font-button-inter { font-family: "Inter", sans-serif !important; }
+  .font-button-roboto { font-family: "Roboto", sans-serif !important; }
+  .font-button-opensans { font-family: "Open Sans", sans-serif !important; }
+  .font-button-lato { font-family: "Lato", sans-serif !important; }
+  .font-button-montserrat { font-family: "Montserrat", sans-serif !important; }
+  .font-button-poppins { font-family: "Poppins", sans-serif !important; }
+  .font-button-sourcesans3 { font-family: "Source Sans 3", sans-serif !important; }
+  .font-button-raleway { font-family: "Raleway", sans-serif !important; }
+  .font-button-ubuntu { font-family: "Ubuntu", sans-serif !important; }
+  .font-button-nunito { font-family: "Nunito", sans-serif !important; }
+  .font-button-playfairdisplay { font-family: "Playfair Display", serif !important; }
+  .font-button-merriweather { font-family: "Merriweather", serif !important; }
+  .font-button-crimsontext { font-family: "Crimson Text", serif !important; }
+  .font-button-lora { font-family: "Lora", serif !important; }
+  .font-button-librebaskerville { font-family: "Libre Baskerville", serif !important; }
+  .font-button-firacode { font-family: "Fira Code", monospace !important; }
+  .font-button-sourcecodepro { font-family: "Source Code Pro", monospace !important; }
+  .font-button-jetbrainsmono { font-family: "JetBrains Mono", monospace !important; }
+  .font-button-inconsolata { font-family: "Inconsolata", monospace !important; }
+  .font-button-robotomono { font-family: "Roboto Mono", monospace !important; }
+  .font-button-spacemono { font-family: "Space Mono", monospace !important; }
+  .font-button-oswald { font-family: "Oswald", sans-serif !important; }
+  .font-button-dancingscript { font-family: "Dancing Script", cursive !important; }
+  .font-button-pacifico { font-family: "Pacifico", cursive !important; }
+  .font-button-bebasneue { font-family: "Bebas Neue", cursive !important; }
+  .font-button-righteous { font-family: "Righteous", cursive !important; }
+  .font-button-fredoka { font-family: "Fredoka", sans-serif !important; }
+  .font-button-comfortaa { font-family: "Comfortaa", cursive !important; }
+  .font-button-quicksand { font-family: "Quicksand", sans-serif !important; }
+  .font-button-vt323 { font-family: "VT323", monospace !important; }
+  .font-button-orbitron { font-family: "Orbitron", sans-serif !important; }
+  .font-button-pressstart2p { font-family: "Press Start 2P", cursive !important; font-size: 10px !important; }
+  .font-button-audiowide { font-family: "Audiowide", cursive !important; }
 }

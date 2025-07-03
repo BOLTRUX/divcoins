@@ -55,10 +55,10 @@ export interface PasswordUpdateData {
 export interface AuthError {
   message: string
   code?: string
-  details?: any
+  details?: unknown
 }
 
-export interface AuthResponse<T = any> {
+export interface AuthResponse<T = unknown> {
   success: boolean
   data?: T
   error?: AuthError

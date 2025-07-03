@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
+import { FontTester } from './FontTester'
 
 export function Dashboard() {
   // Datos de ejemplo para el dashboard
@@ -119,6 +120,11 @@ export function Dashboard() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Font Tester Section */}
+        <div className="mt-8 flex justify-center">
+          <FontTester />
         </div>
 
         {/* Bottom Section */}
